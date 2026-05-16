@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const isGithubPages = process.env.GITHUB_PAGES === "true";
-const repositoryName = "Controlpunch";
+const repositoryName = "Proposta-ControlPunch";
 
 const nextConfig = {
   output: "export",
