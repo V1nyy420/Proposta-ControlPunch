@@ -1,2 +1,2 @@
-:HL["/Controlpunch/_next/static/chunks/0ihgbf04bzsbk.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"QEuTTPyH--TeKtAeasgKC"}
+:HL["/Proposta-ControlPunch/_next/static/chunks/0ihgbf04bzsbk.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"4bkzZUH5jHGbbqlIgv2SK"}

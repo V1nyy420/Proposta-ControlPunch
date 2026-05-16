@@ -3,8 +3,8 @@ self.__BUILD_MANIFEST = {
     "afterFiles": [],
     "beforeFiles": [
       {
-        "source": "/Controlpunch//_next/:path+",
-        "destination": "/Controlpunch/_next/:path+"
+        "source": "/Proposta-ControlPunch//_next/:path+",
+        "destination": "/Proposta-ControlPunch/_next/:path+"
       }
     ],
     "fallback": []
