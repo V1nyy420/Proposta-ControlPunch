@@ -9,3 +9,6 @@ out/
 control-punch-*.png
 .DS_Store
 Thumbs.db
+
+.gitignore
+

@@ -1,0 +1,305 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  background: radial-gradient(circle at top right, rgba(26, 46, 36, 0.4), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(6, 17, 13, 1), transparent 60%);
+  overflow: hidden;
+  padding-top: 80px; /* offset header */
+}
+
+.heroVisual {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.traceGrid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%);
+}
+
+@keyframes signalPass {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(200%); opacity: 0; }
+}
+
+.signal {
+  position: absolute;
+  height: 1px;
+  width: 30vw;
+  background: linear-gradient(90deg, transparent, rgba(86, 197, 140, 0.8), transparent);
+  animation: signalPass 8s ease-in-out infinite;
+}
+
+.signalOne { top: 30%; right: 10%; }
+.signalTwo { top: 70%; left: 10%; animation-delay: 3s; opacity: 0.6; }
+
+@keyframes slowSpin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+.logoMark {
+  position: absolute;
+  top: 50%;
+  right: -10vw;
+  width: 50vw;
+  max-width: 800px;
+  min-width: 400px;
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.logoImage {
+  object-fit: contain;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  width: 100%;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding-top: 60px;
+  }
+}
+
+.content {
+  max-width: 600px;
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  color: var(--gold-soft, #efe0ad);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(239, 224, 173, 0.1);
+  border: 1px solid rgba(239, 224, 173, 0.2);
+}
+
+.title {
+  margin: 0 0 24px;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text, #f6f2e8);
+  font-weight: 800;
+}
+
+.title span {
+  display: block;
+}
+
+.title span:last-child {
+  background: linear-gradient(to right, var(--text, #f6f2e8), var(--muted, #b5beb2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.3;
+  color: var(--text, #f6f2e8);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.copy {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted, #b5beb2);
+  margin-bottom: 40px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.primaryButton, .secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.primaryButton {
+  background: var(--text, #f6f2e8);
+  color: #06110d;
+}
+
+.primaryButton:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text, #f6f2e8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.indicators {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .indicators {
+    grid-template-columns: 1fr;
+  }
+}
+
+.indicatorItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted, #b5beb2);
+  font-size: 0.875rem;
+}
+
+.indicatorItem svg {
+  color: var(--green, #56c58c);
+}
+
+/* Product Mockup */
+.productDisplay {
+  position: relative;
+  height: 600px;
+  perspective: 2000px;
+}
+
+@media (max-width: 1024px) {
+  .productDisplay {
+    height: 400px;
+  }
+}
+
+.mockupFrame {
+  position: absolute;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.mockupTopbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(20, 20, 20, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mockupTopbar span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mockupTopbar strong {
+  margin-left: 8px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mockupImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mockupMain {
+  width: 90%;
+  top: 10%;
+  right: 0;
+  transform: rotateY(-15deg) rotateX(5deg) translateZ(0);
+  z-index: 1;
+}
+
+.mockupMain:hover {
+  transform: rotateY(-5deg) rotateX(2deg) translateZ(50px);
+}
+
+.mockupSecondary {
+  width: 45%;
+  z-index: 2;
+}
+
+.mockupDirection {
+  bottom: 10%;
+  left: 0;
+  transform: rotateY(15deg) rotateX(5deg) translateZ(80px);
+}
+
+.mockupDirection:hover {
+  transform: rotateY(5deg) rotateX(2deg) translateZ(120px);
+}
+
+.mockupPlantio {
+  bottom: -5%;
+  right: 15%;
+  transform: rotateY(-10deg) rotateX(10deg) translateZ(100px);
+}
+
+.mockupPlantio:hover {
+  transform: rotateY(-5deg) rotateX(5deg) translateZ(140px);
+}

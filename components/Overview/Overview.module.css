@@ -1,0 +1,132 @@
+.section {
+  position: relative;
+  padding: 120px 24px;
+  background: var(--bg, #06110d);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--gold-soft, #efe0ad);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+
+@media (max-width: 900px) {
+  .heading {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+}
+
+.heading h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: var(--text, #f6f2e8);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.heading p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--muted, #b5beb2);
+  margin: 0;
+  align-self: end;
+}
+
+.band {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 900px) {
+  .band {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statement {
+  padding: 40px;
+  background: rgba(16, 36, 27, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 900px) {
+  .statement {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+.statementIcon {
+  color: var(--green, #56c58c);
+  margin-bottom: 24px;
+}
+
+.statement p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(246, 242, 232, 0.8);
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text, #f6f2e8);
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.itemIcon {
+  color: var(--gold, #dbc68b);
+  flex-shrink: 0;
+}

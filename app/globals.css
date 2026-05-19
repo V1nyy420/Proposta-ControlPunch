@@ -1729,10 +1729,274 @@ h1 {
   }
 }
 
-@keyframes slow-spin {
-  to {
-    transform: rotate(360deg);
-  }
+
+/* ==========================================================================
+   Automações e Amarrações - Grid de Cards Premium
+   ========================================================================== */
+
+.automation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.automation-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 4vw, 36px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(16, 36, 27, 0.45) 0%, rgba(8, 20, 15, 0.6) 100%);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.16);
+  transition: all 300ms ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.automation-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--green);
+  box-shadow: 
+    0 24px 58px rgba(0, 0, 0, 0.26),
+    0 0 24px rgba(86, 197, 140, 0.08);
+}
+
+.automation-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(127, 255, 208, 0.12), transparent 32%, rgba(219, 198, 139, 0.08));
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.automation-card:hover::before {
+  opacity: 1;
+}
+
+.automation-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.automation-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(86, 197, 140, 0.12);
+  border: 1px solid rgba(86, 197, 140, 0.24);
+  color: var(--green);
+}
+
+.theme-light .automation-card-badge {
+  background: rgba(64, 160, 109, 0.08);
+  border-color: rgba(64, 160, 109, 0.18);
+  color: #1b6f4a;
+}
+
+.automation-card-connection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.connection-arrow {
+  color: var(--green);
+  transition: transform 260ms ease;
+}
+
+.automation-card:hover .connection-arrow {
+  transform: translateX(4px);
+}
+
+.theme-light .automation-card-connection {
+  color: var(--gold);
+}
+
+.automation-card-number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(219, 198, 139, 0.28);
+}
+
+.automation-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+
+.automation-card p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.62;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.automation-card-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--gold-soft);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+}
+
+.automation-card-benefit svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--green);
+}
+
+.theme-light .automation-card {
+  background: var(--bg-elevated);
+  border-color: var(--line);
+  box-shadow: 0 8px 24px rgba(5, 13, 10, 0.02);
+  backdrop-filter: none;
+}
+
+.theme-light .automation-card:hover {
+  border-color: rgba(64, 160, 109, 0.4);
+  box-shadow: 0 16px 36px rgba(5, 13, 10, 0.06);
+}
+
+/* ==========================================================================
+   Investimento - Responsividade e Botão InfinitePay
+   ========================================================================== */
+
+.price-container {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.price-term {
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  font-weight: 700;
+  color: var(--gold-soft);
+  text-transform: lowercase;
+  opacity: 0.9;
+}
+
+.theme-light .price-term {
+  color: var(--gold);
+}
+
+.button-infinitepay {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 28px;
+  margin-top: 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #05100b;
+  background: linear-gradient(135deg, #7fffd0 0%, #56c58c 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 
+    0 4px 20px rgba(86, 197, 140, 0.28),
+    0 12px 36px rgba(86, 197, 140, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.24) inset;
+  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.03em;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button-infinitepay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #dbc68b 0%, #7fffd0 100%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.button-infinitepay:hover {
+  transform: translateY(-3px);
+  color: #05100b;
+  box-shadow: 
+    0 8px 28px rgba(127, 255, 208, 0.45),
+    0 18px 54px rgba(86, 197, 140, 0.3),
+    0 0 0 1.5px rgba(255, 255, 255, 0.35) inset;
+}
+
+.button-infinitepay:hover::after {
+  opacity: 1;
+}
+
+.button-infinitepay svg {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button-infinitepay:hover svg {
+  transform: translateX(4px) scale(1.05);
+}
+
+.theme-light .button-infinitepay {
+  color: #ffffff;
+  background: linear-gradient(135deg, #40a06d 0%, #1b6f4a 100%);
+  box-shadow: 
+    0 4px 18px rgba(64, 160, 109, 0.22),
+    0 8px 24px rgba(27, 111, 74, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.16) inset;
+}
+
+.theme-light .button-infinitepay::after {
+  background: linear-gradient(135deg, #a18a4a 0%, #40a06d 100%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.theme-light .button-infinitepay:hover {
+  color: #ffffff;
+  box-shadow: 
+    0 8px 24px rgba(64, 160, 109, 0.35),
+    0 14px 36px rgba(27, 111, 74, 0.22),
+    0 0 0 1.5px rgba(255, 255, 255, 0.24) inset;
+}
+
+.theme-light .button-infinitepay:hover::after {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1814,6 +2078,11 @@ h1 {
 
   .module-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .automation-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .hero {
@@ -2056,7 +2325,7 @@ h1 {
   .module-card,
   .screen-copy,
   .benefit-card,
-  .automation-row {
+  .automation-card {
     padding: 24px;
   }
 
@@ -2068,15 +2337,6 @@ h1 {
   .module-card,
   .benefit-card {
     min-height: auto;
-  }
-
-  .automation-row {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .automation-icon {
-    margin-bottom: 4px;
   }
 
   .pricing-main strong {

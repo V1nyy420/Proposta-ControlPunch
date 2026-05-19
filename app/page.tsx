@@ -145,15 +145,43 @@ const modules = [
 const automations = [
   {
     title: "Baixa Automática de Clonário para Plantio",
-    icon: DatabaseZap,
+    icon: Sprout,
+    badge: "Rastreabilidade",
+    from: "Clonário",
+    to: "Plantio",
     explanation:
-      "Quando uma planta é criada ou tem seu ambiente atualizado (Guga, Fernanda, Matheus, Rafinha, Externo) no módulo de Plantio, a automação marca automaticamente o clone correspondente no módulo de Clonário como 'plantado', atualizando também a data e o local do plantio.",
+      "Quando uma planta é criada ou tem seu ambiente atualizado no módulo de Plantio, considerando os ambientes Estufa 1, Estufa 2, Estufa 3, Estufa 4 e Estufa 5, a automação marca automaticamente o clone correspondente no módulo de Clonário como ‘plantado’, atualizando também a data e o local do plantio.",
     benefit:
       "Reduz retrabalho, evita falhas manuais e mantém a rastreabilidade atualizada entre clonário e plantio.",
   },
   {
+    title: "Amarração de Secagem para Dispensário",
+    icon: Wind,
+    badge: "Estoque",
+    from: "Secagem",
+    to: "Dispensário",
+    explanation:
+      "Ao lançar uma saída de plantas para paciente na saída de vaporização dentro do módulo de Secagem, o sistema realiza automaticamente a entrada correspondente no módulo de Dispensário, direcionando o item para a categoria de produtos ‘Não Rotulados’.",
+    benefit:
+      "Essa amarração reduz retrabalho, evita divergências entre setores e mantém o estoque do Dispensário atualizado de forma automática a partir das movimentações realizadas na Secagem.",
+  },
+  {
+    title: "Amarração de Laboratório com Estoque",
+    icon: FlaskConical,
+    badge: "Automático",
+    from: "Laboratório",
+    to: "Estoque",
+    explanation:
+      "Ao lançar a produção de um item no módulo de Laboratório, como por exemplo 100 frascos de CBD 1500, o sistema realiza automaticamente a baixa dos materiais que compõem aquele produto no estoque, como bulbos, pipetas, frascos, embalagens e demais insumos cadastrados na composição.",
+    benefit:
+      "Com isso, a produção passa a refletir diretamente no controle de estoque, garantindo maior precisão sobre consumo de materiais, disponibilidade de insumos e custo operacional.",
+  },
+  {
     title: "Logs de Auditoria Centralizados",
     icon: LockKeyhole,
+    badge: "Auditoria",
+    from: "Operações",
+    to: "Acessos",
     explanation:
       "Todas as operações de criação e atualização em diversos módulos (Secagem, Dispensário, Plantio, Laboratório, Clonário) são automaticamente registradas no módulo de Acessos através da função logAuditoria, garantindo rastreabilidade de ações.",
     benefit:
@@ -464,22 +492,35 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="automation-track">
+          <div className="automation-grid">
             {automations.map((automation, index) => {
               const Icon = automation.icon;
               return (
-                <article className="automation-row" data-reveal key={automation.title}>
-                  <div className="automation-number">{String(index + 1).padStart(2, "0")}</div>
-                  <div className="automation-icon">
-                    <Icon size={26} aria-hidden="true" />
-                  </div>
-                  <div className="automation-copy">
-                    <h3>{automation.title}</h3>
-                    <p>{automation.explanation}</p>
-                    <div className="benefit-line">
-                      <CheckCircle2 size={18} aria-hidden="true" />
-                      <span>{automation.benefit}</span>
+                <article
+                  className="automation-card"
+                  data-reveal
+                  key={automation.title}
+                  style={{ transitionDelay: `${index * 50}ms` }}
+                >
+                  <div className="automation-card-header">
+                    <div className="automation-card-number">
+                      {String(index + 1).padStart(2, "0")}
                     </div>
+                    <div className="automation-card-badge">
+                      <Icon size={14} aria-hidden="true" />
+                      <span>{automation.badge}</span>
+                    </div>
+                  </div>
+                  <div className="automation-card-connection">
+                    <span>{automation.from}</span>
+                    <ArrowRight size={12} className="connection-arrow" aria-hidden="true" />
+                    <span>{automation.to}</span>
+                  </div>
+                  <h3>{automation.title}</h3>
+                  <p>{automation.explanation}</p>
+                  <div className="automation-card-benefit">
+                    <CheckCircle2 size={16} aria-hidden="true" />
+                    <span>{automation.benefit}</span>
                   </div>
                 </article>
               );
@@ -523,9 +564,7 @@ export default function Home() {
             </div>
             <h2>Implementação completa dentro do escopo definido.</h2>
             <p>
-              O investimento contempla a implementação do Control Punch com os módulos e funcionalidades descritos nesta
-              proposta, incluindo ajustes de layout, implantação e configuração inicial necessários para a entrega do
-              sistema conforme o escopo apresentado.
+              O valor de implementação contempla os módulos e funcionalidades descritos nesta proposta, incluindo ajustes de layout, implantação e configuração inicial necessários para a entrega do sistema conforme o escopo apresentado.
             </p>
           </div>
 
@@ -535,8 +574,7 @@ export default function Home() {
               <h3>Condições de escopo</h3>
             </div>
             <p>
-              Novas funcionalidades, novos módulos, integrações externas, alterações estruturais ou demandas não previstas
-              deverão ser avaliadas e orçadas separadamente, conforme complexidade e impacto técnico.
+              Novas funcionalidades, novos módulos, integrações externas, alterações estruturais ou demandas não previstas no escopo inicial deverão ser avaliadas e orçadas separadamente, conforme complexidade e impacto técnico.
             </p>
           </div>
         </div>
@@ -590,8 +628,21 @@ export default function Home() {
           <div className="pricing-panel" data-reveal>
             <div className="pricing-spark" aria-hidden="true" />
             <div className="pricing-main">
-              <span>Implementação</span>
-              <strong className="price-value">R$ 20.000,00</strong>
+              <span>Implementação do sistema</span>
+              <div className="price-container">
+                <strong className="price-value">R$ 25.000,00</strong>
+                <span className="price-term">à vista</span>
+              </div>
+              <a
+                className="button-infinitepay"
+                href="https://link.infinitepay.io/vinicius-ramos-86y/VC1DLUMtSQ-pyJ8cu4vNF-25000,00"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Efetuar pagamento de R$ 25.000,00 à vista via InfinitePay"
+              >
+                Efetuar pagamento
+                <ArrowRight size={16} aria-hidden="true" />
+              </a>
             </div>
             <div className="pricing-monthly">
               <span>Mensalidade</span>

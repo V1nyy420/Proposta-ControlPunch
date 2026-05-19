@@ -1,0 +1,57 @@
+# Workflow para compilação e deploy automático do Next.js no GitHub Pages
+name: Deploy para GitHub Pages
+
+on:
+  # Executa ao empurrar commits para a branch padrão 'main'
+  push:
+    branches: ["main"]
+
+  # Permite execução manual a partir da aba Actions no GitHub
+  workflow_dispatch:
+
+# Define as permissões do GITHUB_TOKEN para permitir o deploy no GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite apenas um deploy simultâneo, evitando conflitos
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v4
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Compilar com Next.js
+        env:
+          GITHUB_PAGES: "true"
+        run: npm run build
+
+      - name: Carregar artefato gerado
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+      - name: Implantar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
